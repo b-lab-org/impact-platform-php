@@ -11,7 +11,7 @@ RUN set -xe; \
     postgresql-dev \
     cyrus-sasl-dev \
     # this version of alpine has postgresql 9.5 by default
-    # TODO remove this dependency
+    # TODO remove this dependency in the future
     build-base \
     readline-dev \
     openssl-dev \
