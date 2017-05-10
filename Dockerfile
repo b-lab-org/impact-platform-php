@@ -10,8 +10,6 @@ RUN set -xe; \
     make \
     postgresql-dev \
     cyrus-sasl-dev \
-    # this version of alpine has postgresql 9.5 by default
-    # TODO remove this dependency in the future
     build-base \
     readline-dev \
     openssl-dev \
@@ -22,23 +20,37 @@ RUN set -xe; \
     gnupg \
     ca-certificates \
     libssl1.0 && \
+    # this version of alpine has postgresql 9.5 by default
+    # TODO remove this dependency in the future
     wget ftp://ftp.postgresql.org/pub/source/v9.4.11/postgresql-9.4.11.tar.bz2 -O /tmp/postgresql-9.4.11.tar.bz2 && \
     tar xvfj /tmp/postgresql-9.4.11.tar.bz2 -C /tmp && \
     cd /tmp/postgresql-9.4.11 && ./configure --enable-integer-datetimes --enable-thread-safety --prefix=/usr/local --with-libedit-preferred --with-openssl  && make world && make install world && make -C contrib install && \
     cd /tmp/postgresql-9.4.11/contrib && make && make install && \
     apk --purge del build-base wget gnupg ca-certificates && \
-    rm -r /tmp/postgresql-9.4.11*
+    rm -r /tmp/postgresql-9.4.11* && \
 
-RUN docker-php-ext-install \
+    # php extensions
+    docker-php-ext-install \
     json \
     mcrypt \
     pdo \
-    pdo_pgsql
-
-RUN pecl install \
+    pdo_pgsql && \
+    pecl install \
     xdebug \
-    memcached-2.2.0 \
-    && docker-php-ext-enable xdebug memcached
+    memcached-2.2.0 && \
+    docker-php-ext-enable xdebug memcached && \
+
+    # cleanup
+    apk del \
+    autoconf \
+    g++ \
+    make \
+    cyrus-sasl-dev \
+    readline-dev \
+    openssl-dev \
+    zlib-dev \
+    libxml2-dev && \
+    rm -rf /var/cache/apk/*
 
 RUN mkdir -p /data/www
 VOLUME ["/data"]
