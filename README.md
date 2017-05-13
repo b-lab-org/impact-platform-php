@@ -11,4 +11,7 @@ php:
     entrypoint: php <your php command>
     volumes_from:
         - data
+    entrypoint:
+        - php
+        - artisan
 ```
