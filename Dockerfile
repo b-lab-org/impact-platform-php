@@ -34,12 +34,15 @@ RUN set -xe; \
     json \
     mcrypt \
     pdo \
+    opcache \
+    pcntl \
     pdo_pgsql && \
+
     pecl install \
     xdebug \
-    opcache \
     memcached-2.2.0 && \
-    docker-php-ext-enable xdebug memcached opcache && \
+
+    docker-php-ext-enable xdebug memcached opcache pcntl && \
 
     # cleanup
     apk del \
@@ -52,7 +55,8 @@ RUN set -xe; \
     zlib-dev \
     libxml2-dev && \
     rm -rf /var/cache/apk/* && \
-    docker-php-source delete
+    docker-php-source delete && \
+    rm -rf /tmp/*
 
 RUN mkdir -p /data/www
 VOLUME ["/data"]
