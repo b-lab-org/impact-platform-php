@@ -21,6 +21,7 @@ RUN set -xe; \
     ncurses \
     ca-certificates \
     libssl1.0 && \
+    
     # this version of alpine has postgresql 9.5 by default
     # TODO remove this dependency in the future
     wget ftp://ftp.postgresql.org/pub/source/v9.4.11/postgresql-9.4.11.tar.bz2 -O /tmp/postgresql-9.4.11.tar.bz2 && \
