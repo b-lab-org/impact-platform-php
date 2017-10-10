@@ -21,7 +21,7 @@ RUN set -xe; \
     ncurses \
     ca-certificates \
     readline \
-    libbz2 \
+    bzip2-dev \
     libssl1.0 && \
 
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin && \
