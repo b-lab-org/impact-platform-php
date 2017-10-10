@@ -25,7 +25,7 @@ RUN set -xe; \
     
     # this version of alpine has postgresql 9.5 by default
     # TODO remove this dependency in the future
-    wget ftp://ftp.postgresql.org/pub/source/v9.4.11/postgresql-9.4.11.tar.bz2 -O /tmp/postgresql-9.4.11.tar.bz2 && \
+    wget http://ftp.postgresql.org/pub/source/v9.4.11/postgresql-9.4.11.tar.bz2 -O /tmp/postgresql-9.4.11.tar.bz2 && \
     tar xvfj /tmp/postgresql-9.4.11.tar.bz2 -C /tmp && \
     cd /tmp/postgresql-9.4.11 && ./configure --enable-integer-datetimes --enable-thread-safety --prefix=/usr/local --with-libedit-preferred --with-openssl  && make world && make install world && make -C contrib install && \
     cd /tmp/postgresql-9.4.11/contrib && make && make install && \
@@ -46,6 +46,10 @@ RUN set -xe; \
     memcached-2.2.0 && \
 
     docker-php-ext-enable xdebug memcached opcache pcntl && \
+
+    curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer && \
+    composer self-update && \
 
     # cleanup
     apk del \
