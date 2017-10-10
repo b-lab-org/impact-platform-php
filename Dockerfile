@@ -70,3 +70,4 @@ WORKDIR /data/www
 ADD php.ini $PHP_INI_DIR/conf.d/impact.ini
 ENTRYPOINT ["php"]
 CMD ["--help"]
+
