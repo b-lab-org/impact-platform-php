@@ -20,6 +20,7 @@ RUN set -xe; \
     gnupg \
     ncurses \
     ca-certificates \
+    readline \
     libssl1.0 && \
     
     # this version of alpine has postgresql 9.5 by default
