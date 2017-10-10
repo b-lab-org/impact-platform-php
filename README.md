@@ -2,7 +2,7 @@
 [Docker](https://www.docker.com/) container for [PHP](http://www.php.net/).
 
 ## Overview
-Use with the [data container](https://github.com/b-lab-org/impact-platform-data) and [memcached container](https://github.com/b-lab-org/impact-platform-memcached).
+Use with the [memcached container](https://github.com/b-lab-org/impact-platform-memcached).
 
 ## Docker-Compose Usage
 ```
