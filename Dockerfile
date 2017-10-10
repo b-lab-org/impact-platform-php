@@ -22,6 +22,8 @@ RUN set -xe; \
     ca-certificates \
     readline \
     libssl1.0 && \
+
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin && \
     
     # this version of alpine has postgresql 9.5 by default
     # TODO remove this dependency in the future
@@ -46,10 +48,6 @@ RUN set -xe; \
     memcached-2.2.0 && \
 
     docker-php-ext-enable xdebug memcached opcache pcntl && \
-
-    curl -sS https://getcomposer.org/installer | php && \
-    mv composer.phar /usr/local/bin/composer && \
-    composer self-update && \
 
     # cleanup
     apk del \
