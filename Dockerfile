@@ -22,10 +22,12 @@ RUN set -xe; \
     ca-certificates \
     readline \
     libssl1.0 && \
+
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin && \
     
     # this version of alpine has postgresql 9.5 by default
     # TODO remove this dependency in the future
-    wget ftp://ftp.postgresql.org/pub/source/v9.4.11/postgresql-9.4.11.tar.bz2 -O /tmp/postgresql-9.4.11.tar.bz2 && \
+    wget http://ftp.postgresql.org/pub/source/v9.4.11/postgresql-9.4.11.tar.bz2 -O /tmp/postgresql-9.4.11.tar.bz2 && \
     tar xvfj /tmp/postgresql-9.4.11.tar.bz2 -C /tmp && \
     cd /tmp/postgresql-9.4.11 && ./configure --enable-integer-datetimes --enable-thread-safety --prefix=/usr/local --with-libedit-preferred --with-openssl  && make world && make install world && make -C contrib install && \
     cd /tmp/postgresql-9.4.11/contrib && make && make install && \
@@ -68,3 +70,4 @@ WORKDIR /data/www
 ADD php.ini $PHP_INI_DIR/conf.d/impact.ini
 ENTRYPOINT ["php"]
 CMD ["--help"]
+
