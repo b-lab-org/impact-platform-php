@@ -21,6 +21,7 @@ RUN set -xe; \
     ncurses \
     ca-certificates \
     readline \
+    libbz2 \
     libssl1.0 && \
 
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin && \
@@ -41,6 +42,7 @@ RUN set -xe; \
     pdo \
     opcache \
     pcntl \
+    bz2 \
     pdo_pgsql && \
 
     pecl install \
