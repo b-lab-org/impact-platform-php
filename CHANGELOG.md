@@ -1,3 +1,6 @@
+## 0.0.4
+* Adding bash
+
 ## 0.0.3
 * Adding Composer and bzip2
 

@@ -22,6 +22,7 @@ RUN set -xe; \
     ca-certificates \
     readline \
     bzip2-dev \
+    bash \
     libssl1.0 && \
 
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin && \
