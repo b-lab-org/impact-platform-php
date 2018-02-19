@@ -26,7 +26,7 @@ RUN set -xe; \
     libssl1.0 && \
 
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin && \
-    
+
     # this version of alpine has postgresql 9.5 by default
     # TODO remove this dependency in the future
     wget http://ftp.postgresql.org/pub/source/v10.2/postgresql-10.2.tar.bz2 -O /tmp/postgresql-10.2.tar.bz2 && \
@@ -73,4 +73,3 @@ WORKDIR /data/www
 ADD php.ini $PHP_INI_DIR/conf.d/impact.ini
 ENTRYPOINT ["php"]
 CMD ["--help"]
-
