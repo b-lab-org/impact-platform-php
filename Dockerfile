@@ -31,7 +31,7 @@ RUN set -xe; \
     # TODO remove this dependency in the future
     wget http://ftp.postgresql.org/pub/source/v10.2/postgresql-10.2.tar.bz2 -O /tmp/postgresql-10.2.tar.bz2 && \
     tar xvfj /tmp/postgresql-10.2.tar.bz2 -C /tmp && \
-    cd /tmp/postgresql-10.2 && ./configure --enable-integer-datetimes --enable-thread-safety --prefix=/usr/local --with-libedit-preferred --with-openssl  && make world && make install world && make -C contrib install && \
+    cd /tmp/postgresql-10.2 && ./configure --enable-integer-datetimes --enable-thread-safety --prefix=/usr/local --with-libedit-preferred --with-openssl && make world && make install world && make -C contrib install && \
     cd /tmp/postgresql-10.2/contrib && make && make install && \
     apk --purge del build-base wget gnupg ca-certificates && \
     rm -r /tmp/postgresql-10.2* && \
@@ -50,7 +50,7 @@ RUN set -xe; \
     xdebug \
     memcached-2.2.0 && \
 
-    docker-php-ext-enable xdebug memcached opcache pcntl && \
+    docker-php-ext-enable memcached opcache pcntl && \
 
     # cleanup
     apk del \
@@ -67,6 +67,7 @@ RUN set -xe; \
     rm -rf /tmp/*
 
 RUN mkdir -p /data/www
+    
 VOLUME ["/data"]
 WORKDIR /data/www
 
