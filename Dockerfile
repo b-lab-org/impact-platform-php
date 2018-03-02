@@ -47,10 +47,10 @@ RUN set -xe; \
     pdo_pgsql && \
 
     pecl install \
-    xdebug \
+    xdebug-2.5.5 \
     memcached-2.2.0 && \
 
-    docker-php-ext-enable memcached opcache pcntl && \
+    docker-php-ext-enable xdebug memcached opcache pcntl && \
 
     # cleanup
     apk del \
